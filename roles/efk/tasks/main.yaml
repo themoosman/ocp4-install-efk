@@ -1,0 +1,37 @@
+
+- name: Delete manifests dir
+  file:
+    path: "{{ manifests_path }}"
+    state: absent
+
+- name: Create manifests dir
+  file:
+    path: "{{ manifests_path }}"
+    state: directory
+
+- name: Populate filtered templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ manifests_path }}/{{ item.path | replace('yaml.j2','yaml')}}"
+  with_filetree: "{{ template_path }}"
+
+- name: List manifest files
+  find:
+    paths: "{{ manifests_path }}"
+    recurse: yes
+    file_type: file
+  register: manifests
+
+- name: Create/update OpenShift objects
+  k8s:
+    src: "{{ item }}"
+  register: k8s_result
+  until: k8s_result is success
+  retries: 18
+  delay: 10
+  loop: "{{ manifests.files | map(attribute='path') | sort | list }}"
+
+- name: Delete manifests dir
+  file:
+    path: "{{ manifests_path }}"
+    state: absent

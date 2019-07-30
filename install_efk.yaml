@@ -1,0 +1,7 @@
+---
+- name: "Install EFK Stack"
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - efk

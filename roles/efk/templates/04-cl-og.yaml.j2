@@ -1,0 +1,9 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-logging-ogog
+  namespace: openshift-logging
+spec:
+  serviceAccount:
+  targetNamespaces:
+  - openshift-logging
