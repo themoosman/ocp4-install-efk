@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-logging-eventrouter
+  namespace: openshift-logging
+  labels:
+    component: eventrouter
+    logging-infra: eventrouter
+    provider: openshift
+spec:
+  selector:
+    matchLabels:
+      component: eventrouter
+      logging-infra: eventrouter
+      provider: openshift
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: eventrouter
+        logging-infra: eventrouter
+        provider: openshift
+      name: cluster-logging-eventrouter
+    spec:
+      serviceAccount: cluster-logging-eventrouter
+      containers:
+        - name: kube-eventrouter
+          image: quay.io/openshift/origin-logging-eventrouter:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/eventrouter
+      volumes:
+        - name: config-volume
+          configMap:
+            name: cluster-logging-eventrouter

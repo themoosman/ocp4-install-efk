@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: event-reader-binding
+subjects:
+- kind: ServiceAccount
+  name: cluster-logging-eventrouter
+  namespace: openshift-logging
+roleRef:
+  kind: ClusterRole
+  name: event-reader
