@@ -14,7 +14,7 @@ git clone https://github.com/themoosman/ocp4-install-efk
 ```
 
 ### Export the path to the k8s config file.
-This is how the k8s Ansible module will use to authenticate.
+This is what the k8s Ansible module will use to authenticate to OpenShift.
 ```bash
 #Update as necessary
 export KUBECONFIG=/home/.kube/config
@@ -29,23 +29,14 @@ ansible-playbook install_efk.yaml
 ```
 
 ## Cleanup
-### Run the install_efk.yaml playbook
+### Run the cleanup script.
 ```bash
-oc delete ClusterLogging instance -n openshift-logging && \
-oc delete Role prometheus-k8s -n openshift-operators-redhat && \
-oc delete Subscription elasticsearch-operator -n openshift-operators-redhat && \
-oc delete Subscription cluster-logging -n openshift-logging && \
-oc delete csc installed-community-openshift-logging -n openshift-marketplace && \
-oc delete csc elasticsearch -n openshift-marketplace && \
-oc delete og openshift-operators-redhat -n openshift-operators-redhat && \
-oc delete og openshift-logging-ogog -n opensift-logging && \
-oc delete namespace openshift-operators-redhat && \
-oc delete namespace openshift-logging
+./cleanup.sh
 ```
 
 ## TODO
 Current the following variables are hardcoded and need to be made dynamic.
 
-`channel` - use `oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.channels[].name}'` to get the value.
-`csv` - use `oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}'` to get the value.
-`clv` - use `oc get packagemanifest cluster-logging -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}'` to get the value.
+* `channel` - use `oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.channels[].name}'` to get the value.
+* `csv` - use `oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}'` to get the value.
+* `clv` - use `oc get packagemanifest cluster-logging -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}'` to get the value.
