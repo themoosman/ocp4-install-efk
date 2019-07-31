@@ -28,5 +28,5 @@ es_instance_ram: "4Gi"
 kibana_replicas: 1
 
 #Ansible Paths
-template_path : 'roles/efk-part1/templates/'
-manifests_path: 'roles/efk-part1/generated-manifests'
+template_path : 'roles/efk/templates/'
+manifests_path: 'roles/efk/generated-manifests'
