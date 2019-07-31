@@ -3,7 +3,7 @@
 This automation will install EFK stack in OpenShift 4.x per (https://docs.openshift.com/container-platform/4.1/logging/efk-logging-deploying.html#efk-logging-deploy-subscription_efk-logging-deploying).
 
 ## Prerequisites
-* An OpenShift 4 cluster (tested on OCP 4.1.x)
+* An OpenShift 4 cluster (tested on OCP 4.1.8)
 * k8s Ansible Module (https://docs.ansible.com/ansible/latest/modules/k8s_module.html)
 
 ## Setup
