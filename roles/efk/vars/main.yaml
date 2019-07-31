@@ -20,7 +20,7 @@ es_disk_size: "200G"
 es_storageclass: "gp2"
 #Options: FullRedundancy, MultipleRedundancy,(SingleRedundancy),ZeroRedundancy
 es_redundancy: "ZeroRedundancy"
-es_cpu_limit: "500m"
+es_cpu_limit: "1"
 es_cpu_request: "500m"
 es_memory_limit: "4Gi"
 es_memory_request: "4Gi"

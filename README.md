@@ -17,7 +17,7 @@ git clone https://github.com/themoosman/ocp4-install-efk
 This is what the k8s Ansible module will use to authenticate to OpenShift.
 ```bash
 #Update as necessary
-export KUBECONFIG=/home/.kube/config
+export KUBECONFIG=/home/themoosman/.kube/config
 ```
 
 ### Run the install_efk.yaml playbook
