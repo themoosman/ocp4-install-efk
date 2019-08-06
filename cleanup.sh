@@ -2,8 +2,8 @@
 
 oc delete ClusterLogging instance -n openshift-logging
 oc delete Role prometheus-k8s -n openshift-operators-redhat
-oc delete sub elasticsearch-operator
-oc delete sub cluster-logging
+oc delete Subscription elasticsearch-operator -n openshift-operators-redhat
+oc delete Subscription cluster-logging -n openshift-logging
 oc delete csc installed-community-openshift-logging -n openshift-marketplace
 oc delete csc elasticsearch -n openshift-marketplace
 oc delete og openshift-operators-redhat -n openshift-operators-redhat
